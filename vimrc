@@ -15,17 +15,22 @@ exec "nohlsearch"
 set incsearch
 set ignorecase
 set smartcase
-set ts=4
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set expandtab
+set t_Co=256
 
 
 noremap <LEADER><CR> :nohlsearch<CR>
 " :nohlsearch is different from :set nohlsearch
-
-
+map <a-l> i
+noremap <C-up> none
 
 map <LEADER>rc :e $MYVIMRC<CR>
 
+
+map <LEADER>i a<++><Esc>
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4<Right>
 map <LEADER><Left><LEADER> <Esc>?<++><CR>:nohlsearch<CR>c4<Right>
 map <LEADER>h<LEADER> <Esc>?<++><CR>:nohlsearch<CR>c4<Right>
@@ -37,7 +42,7 @@ map r :call CompileRunGcc()<CR>
 func! CompileRunGcc()
   exec "w"
   if &filetype == 'c'
-    exec "!g++ % -o %<"
+    exec "!gcc % -o %<"
     exec "!time ./%<"
   elseif &filetype == 'cpp'
     exec "!g++ % -o %<"
@@ -110,7 +115,7 @@ let g:mkdp_browser = 'chromium'
 
 " set to 1, echo preview page url in command line when open preview page
 " default is 0
-let g:mkdp_echo_preview_url = 0
+let g:mkdp_echo_preview_url =1 
 
 " a custom vim function name to open preview page
 " this function will receive url as param
@@ -184,21 +189,40 @@ let g:mkdp_page_title = '「${name}」'
 call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'
-Plug 'connorholyday/vim-snazzy'
 
 " Markdown
+"Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & npm install' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 
-Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+" Theme
+Plug 'whatyouhide/vim-gotham'
+Plug 'mhartington/oceanic-next'
+Plug 'connorholyday/vim-snazzy'
+Plug 'liuchengxu/space-vim-dark'
+Plug 'tomasr/molokai'
+"Plug 'altercation/solarized'
+"Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'vim-scripts/fcitx.vim'
+
 " Initialize plugin system
 call plug#end()
+"colorscheme solarized
+"colorscheme molokai
+"let g:molokai_original = 1
+"let g:rehash256 = 1
 
-colorscheme snazzy
-let g:SnazzyTransparent = 1
+"set termguicolors
+"colorscheme OceanicNext
+"let g:oceanic_next_terminal_bold=1
+"let g:oceanic_next_terminal_italic=1
+"let g:airline_theme='oceanicnext'
 
+"colorscheme snazzy
+colorscheme gotham256
+"let g:SnazzyTransparent = 1
 
 
 
