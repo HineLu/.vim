@@ -1,6 +1,6 @@
 let mapleader=" "
 "default is \
-syntax on
+syntax enable
 set number
 "set nonumber
 "set relativenumber
@@ -215,13 +215,13 @@ call plug#end()
 "let g:rehash256 = 1
 
 "set termguicolors
-"colorscheme OceanicNext
+colorscheme OceanicNext
 "let g:oceanic_next_terminal_bold=1
 "let g:oceanic_next_terminal_italic=1
 "let g:airline_theme='oceanicnext'
 
 "colorscheme snazzy
-colorscheme gotham256
+"colorscheme gotham256
 "let g:SnazzyTransparent = 1
 
 
