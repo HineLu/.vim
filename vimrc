@@ -20,6 +20,7 @@ set softtabstop=4
 set shiftwidth=4
 set expandtab
 set t_Co=256
+"set mouse=a
 
 
 noremap <LEADER><CR> :nohlsearch<CR>
@@ -206,6 +207,8 @@ Plug 'tomasr/molokai'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'vim-scripts/fcitx.vim'
+"Plug 'ap/vim-css-color'
+"Plug 'gko/vim-coloresque'
 
 " Initialize plugin system
 call plug#end()
@@ -215,14 +218,14 @@ call plug#end()
 "let g:rehash256 = 1
 
 "set termguicolors
-colorscheme OceanicNext
+"colorscheme OceanicNext
 "let g:oceanic_next_terminal_bold=1
 "let g:oceanic_next_terminal_italic=1
 "let g:airline_theme='oceanicnext'
 
-"colorscheme snazzy
+let g:SnazzyTransparent = 1
+colorscheme snazzy
 "colorscheme gotham256
-"let g:SnazzyTransparent = 1
 
 
 
