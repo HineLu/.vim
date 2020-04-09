@@ -1,6 +1,6 @@
 let mapleader=" "
 "default is \
-syntax enable
+syntax on
 set number
 "set nonumber
 "set relativenumber
@@ -19,7 +19,8 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-set t_Co=256
+set history=800
+
 "set mouse=a
 
 
@@ -31,12 +32,21 @@ noremap <C-up> none
 map <LEADER>rc :e $MYVIMRC<CR>
 
 
-map <LEADER>i a<++><Esc>
+map <LEADER>i a<++>
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4<Right>
 map <LEADER><Left><LEADER> <Esc>?<++><CR>:nohlsearch<CR>c4<Right>
 map <LEADER>h<LEADER> <Esc>?<++><CR>:nohlsearch<CR>c4<Right>
 map <LEADER><Up><LEADER> <Esc>?<++><CR>:nohlsearch<CR>c4<Right>
 map <LEADER>k<LEADER> <Esc>?<++><CR>:nohlsearch<CR>c4<Right>
+
+
+" paste toggle
+"nnoremap <F8> :setl ai! cin! si! inde=<CR>
+"nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+"set showmode
+
+
 
 " Compile function
 map r :call CompileRunGcc()<CR>
@@ -45,6 +55,7 @@ func! CompileRunGcc()
   if &filetype == 'c'
     exec "!gcc % -o %<"
     exec "!time ./%<"
+"    :term ./%<  
   elseif &filetype == 'cpp'
     exec "!g++ % -o %<"
     exec "!time ./%<"
@@ -201,6 +212,9 @@ Plug 'mhartington/oceanic-next'
 Plug 'connorholyday/vim-snazzy'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
+Plug 'ajmwagar/vim-deus'
+Plug 'joshdick/onedark.vim'
 "Plug 'altercation/solarized'
 "Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
@@ -208,7 +222,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'vim-scripts/fcitx.vim'
 "Plug 'ap/vim-css-color'
-"Plug 'gko/vim-coloresque'
+"Plug 'lilydjwg/colorizer'
+Plug 'gko/vim-coloresque'
+Plug 'godlygeek/tabular' "必要插件，安装在vim-markdown前面
+"Plug 'plasticboy/vim-markdown'
 
 " Initialize plugin system
 call plug#end()
@@ -216,15 +233,22 @@ call plug#end()
 "colorscheme molokai
 "let g:molokai_original = 1
 "let g:rehash256 = 1
-
+let g:vim_markdown_math = 1
 "set termguicolors
 "colorscheme OceanicNext
 "let g:oceanic_next_terminal_bold=1
 "let g:oceanic_next_terminal_italic=1
-"let g:airline_theme='oceanicnext'
-
+"let g:airline_theme = 'snazzy'
+let g:airline_powerline_fonts = 1
+"let g:airline#extensions#tabline#enabled = 1
+"if !exists('g:airline_symbols')
+"let g:airline_symbols = {}
+"endif 
 let g:SnazzyTransparent = 1
 colorscheme snazzy
+"let g:OnedarkTransparent = 1
+"colorscheme onedark
+"let g:airline_theme='onedark'
 "colorscheme gotham256
 
 
