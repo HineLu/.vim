@@ -223,7 +223,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-scripts/fcitx.vim'
 "Plug 'ap/vim-css-color'
 "Plug 'lilydjwg/colorizer'
-Plug 'gko/vim-coloresque'
+"Plug 'gko/vim-coloresque'
 Plug 'godlygeek/tabular' "必要插件，安装在vim-markdown前面
 "Plug 'plasticboy/vim-markdown'
 

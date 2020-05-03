@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =3
+let g:netrw_dirhistcnt =6
+let g:netrw_dirhist_6='/home/hine/Workspace/i3-polybar-config/polybar'
+let g:netrw_dirhist_5='/home/hine/Applications/prettyi3/light/config/polybar'
+let g:netrw_dirhist_4='/home/hine/Workspace/i3-polybar-config/polybar'
 let g:netrw_dirhist_3='/home/hine/Workspace/StudyNotes/ExpCProgrammingLanguage/2'
 let g:netrw_dirhist_2='/home/hine/Workspace/StudyNotes/ExpCProgrammingLanguage'
 let g:netrw_dirhist_1='/home/hine/Workspace/StudyNotes/ExpCProgrammingLanguage/2'
@@ -7,6 +10,3 @@ let g:netrw_dirhist_0='/home/hine/Workspace/StudyNotes/ExpCProgrammingLanguage'
 let g:netrw_dirhist_9='/home/hine/Workspace/StudyNotes'
 let g:netrw_dirhist_8='/home/hine/Workspace/StudyNotes/Homework'
 let g:netrw_dirhist_7='/home/hine/.vim/plugged'
-let g:netrw_dirhist_6='/home/hine/Workspace/StudyNotes/ExpCProgrammingLanguage/2'
-let g:netrw_dirhist_5='/home/hine/.config/ranger'
-let g:netrw_dirhist_4='/home/hine/图片'
