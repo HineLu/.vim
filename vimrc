@@ -219,6 +219,8 @@ Plug 'joshdick/onedark.vim'
 "Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'hsanson/vim-android'
+Plug 'puremourning/vimspector'
 
 Plug 'vim-scripts/fcitx.vim'
 "Plug 'ap/vim-css-color'
@@ -257,6 +259,15 @@ colorscheme snazzy
 
 
 
+
+" === start
+" === vim-android
+" ===
+let g:android_sdk_path = '~/Android/Sdk'
+
+" ===
+" === vim-android
+" === end
 
 
 

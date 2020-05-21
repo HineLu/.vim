@@ -114,14 +114,6 @@ vnoremap <silent> <Plug>(coc-explorer-action-v-e) :call coc#rpc#request('doKey
 nnoremap <silent> <Plug>(coc-explorer-action-n-e) :call coc#rpc#request('doKeymap', ['explorer-action-n-e'])
 vnoremap <silent> <Plug>(coc-explorer-action-v-u) :call coc#rpc#request('doKeymap', ['explorer-action-v-u'])
 nnoremap <silent> <Plug>(coc-explorer-action-n-u) :call coc#rpc#request('doKeymap', ['explorer-action-n-u'])
-xnoremap <silent> <Plug>(coc-git-chunk-outer) :call coc#rpc#request('doKeymap', ['git-chunk-outer'])
-onoremap <silent> <Plug>(coc-git-chunk-outer) :call coc#rpc#request('doKeymap', ['git-chunk-outer'])
-xnoremap <silent> <Plug>(coc-git-chunk-inner) :call coc#rpc#request('doKeymap', ['git-chunk-inner'])
-onoremap <silent> <Plug>(coc-git-chunk-inner) :call coc#rpc#request('doKeymap', ['git-chunk-inner'])
-nnoremap <silent> <Plug>(coc-git-commit) :call coc#rpc#notify('doKeymap', ['git-commit'])
-nnoremap <silent> <Plug>(coc-git-chunkinfo) :call coc#rpc#notify('doKeymap', ['git-chunkinfo'])
-nnoremap <silent> <Plug>(coc-git-prevchunk) :call coc#rpc#notify('doKeymap', ['git-prevchunk'])
-nnoremap <silent> <Plug>(coc-git-nextchunk) :call coc#rpc#notify('doKeymap', ['git-nextchunk'])
 nnoremap <silent> <Plug>(coc-translator-h) :call coc#rpc#notify('doKeymap', ['translator-h'])
 vnoremap <silent> <Plug>(coc-translator-rv) :call coc#rpc#notify('doKeymap', ['translator-rv'])
 nnoremap <silent> <Plug>(coc-translator-r) :call coc#rpc#notify('doKeymap', ['translator-r'])
@@ -184,7 +176,7 @@ set laststatus=2
 set pastetoggle=<F2>
 set pyxversion=3
 set ruler
-set runtimepath=~/.config/coc/extensions/node_modules/coc-explorer,~/.vim,~/.vim/plugged/vim-airline,~/.vim/plugged/vim-gotham,~/.vim/plugged/oceanic-next,~/.vim/plugged/vim-snazzy,~/.vim/plugged/space-vim-dark,~/.vim/plugged/molokai,~/.vim/plugged/gruvbox,~/.vim/plugged/vim-deus,~/.vim/plugged/onedark.vim,~/.vim/plugged/coc.nvim,~/.vim/plugged/fcitx.vim,~/.vim/plugged/tabular,/usr/share/vim/vimfiles,/usr/share/vim/vim82,/usr/share/vim/vimfiles/after,~/.vim/plugged/oceanic-next/after,~/.vim/plugged/tabular/after,~/.vim/after
+set runtimepath=~/.config/coc/extensions/node_modules/coc-explorer,~/.vim,~/.vim/plugged/vim-airline,~/.vim/plugged/markdown-preview.nvim,~/.vim/plugged/vim-gotham,~/.vim/plugged/oceanic-next,~/.vim/plugged/vim-snazzy,~/.vim/plugged/space-vim-dark,~/.vim/plugged/molokai,~/.vim/plugged/gruvbox,~/.vim/plugged/vim-deus,~/.vim/plugged/onedark.vim,~/.vim/plugged/coc.nvim,~/.vim/plugged/vim-android,~/.vim/plugged/vimspector,~/.vim/plugged/fcitx.vim,~/.vim/plugged/tabular,/usr/share/vim/vimfiles,/usr/share/vim/vim82,/usr/share/vim/vimfiles/after,~/.vim/plugged/oceanic-next/after,~/.vim/plugged/tabular/after,~/.vim/after
 set shiftwidth=4
 set showcmd
 set smartcase
@@ -198,15 +190,15 @@ let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/
+cd ~/Workspace/StudyNotes/TheFirstCode-guolin
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
 argglobal
 %argdel
-$argadd /etc/pacman.conf
-edit /etc/pacman.conf
+$argadd 2Activity.md
+edit 2Activity.md
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -216,6 +208,16 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
+let s:cpo_save=&cpo
+set cpo&vim
+inoremap <buffer> <silent> <Plug>MarkdownPreviewToggle :call mkdp#util#toggle_preview()
+inoremap <buffer> <silent> <Plug>MarkdownPreviewStop :call mkdp#util#stop_preview()a
+inoremap <buffer> <silent> <Plug>MarkdownPreview :call mkdp#util#open_preview_page()a
+nnoremap <buffer> <silent> <Plug>MarkdownPreviewToggle :call mkdp#util#toggle_preview()
+noremap <buffer> <silent> <Plug>MarkdownPreviewStop :call mkdp#util#stop_preview()
+noremap <buffer> <silent> <Plug>MarkdownPreview :call mkdp#util#open_preview_page()
+let &cpo=s:cpo_save
+unlet s:cpo_save
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -232,8 +234,8 @@ setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=:#
-setlocal commentstring=#\ %s
+setlocal comments=fb:*,fb:-,fb:+,n:>
+setlocal commentstring=<!--%s-->
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -251,8 +253,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'conf'
-setlocal filetype=conf
+if &filetype != 'markdown'
+setlocal filetype=markdown
 endif
 setlocal fixendofline
 setlocal foldcolumn=0
@@ -266,8 +268,8 @@ setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
 setlocal formatexpr=
-setlocal formatoptions=croql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatoptions=tcqln
+setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\|^[-*+]\\s\\+\\|^\\[^\\ze[^\\]]\\+\\]:
 setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
@@ -285,19 +287,19 @@ setlocal lispwords=
 setlocal nolist
 setlocal makeencoding=
 setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
+setlocal matchpairs=(:),{:},[:],<:>
 setlocal modeline
 setlocal modifiable
 setlocal nrformats=bin,octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=
+setlocal omnifunc=htmlcomplete#CompleteTags
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
 setlocal quoteescape=\\
-setlocal readonly
+setlocal noreadonly
 setlocal norelativenumber
 setlocal norightleft
 setlocal rightleftcmd=search
@@ -318,8 +320,8 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'conf'
-setlocal syntax=conf
+if &syntax != 'markdown'
+setlocal syntax=markdown
 endif
 setlocal tabstop=4
 setlocal tagcase=
@@ -340,14 +342,14 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 96 - ((22 * winheight(0) + 15) / 31)
+let s:l = 98 - ((29 * winheight(0) + 15) / 31)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-96
-normal! 0
+98
+normal! 014|
 tabnext 1
-badd +0 /etc/pacman.conf
+badd +0 2Activity.md
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
@@ -355,7 +357,7 @@ unlet! s:wipebuf
 set winheight=1 winwidth=20 shortmess=filnxtToOS
 set winminheight=1 winminwidth=1
 let s:sx = expand("<sfile>:p:r")."x.vim"
-if file_readable(s:sx)
+if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &so = s:so_save | let &siso = s:siso_save
