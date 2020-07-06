@@ -38,7 +38,7 @@ map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4<Right>
 map <LEADER><Left><LEADER> <Esc>?<++><CR>:nohlsearch<CR>c4<Right>
 map <LEADER>h<LEADER> <Esc>?<++><CR>:nohlsearch<CR>c4<Right>
 map <LEADER><Up><LEADER> <Esc>?<++><CR>:nohlsearch<CR>c4<Right>
-map <LEADER>k<LEADER> <Esc>?<++><CR>:nohlsearch<CR>c4<Right>
+"map <LEADER>k<LEADER> <Esc>?<++><CR>:nohlsearch<CR>c4<Right>
 
 
 " paste toggle
@@ -219,7 +219,7 @@ Plug 'joshdick/onedark.vim'
 "Plug 'altercation/solarized'
 "Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'hsanson/vim-android'
 Plug 'puremourning/vimspector'
 
@@ -301,10 +301,10 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " Open up coc-commands
 nnoremap <c-c> :CocCommand<CR>
 " Text Objects
-"xmap kf <Plug>(coc-funcobj-i)
-"xmap af <Plug>(coc-funcobj-a)
-"omap kf <Plug>(coc-funcobj-i)
-"omap af <Plug>(coc-funcobj-a)
+xmap kf <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap kf <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
 " Useful commands
 nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
 nmap <silent> gd <Plug>(coc-definition)

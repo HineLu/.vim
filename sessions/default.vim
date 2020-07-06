@@ -6,6 +6,7 @@ inoremap <silent> <Plug>CocRefresh =coc#_complete()
 inoremap <silent> <expr> <C-Space> coc#refresh()
 inoremap <expr> <S-Tab> pumvisible() ? "\" : "\<S-Tab>"
 nnoremap  :CocCommand
+nmap  tc <Plug>Colorizer
 nmap  a <Plug>(coc-codeaction-selected)
 xmap  a <Plug>(coc-codeaction-selected)
 nmap  rn <Plug>(coc-rename)
@@ -19,16 +20,12 @@ map  i a<++>
 map  rc :e $MYVIMRC
 noremap   :nohlsearch
 map R :call CompileBuildrrr()
-omap af <Plug>(coc-funcobj-a)
-xmap af <Plug>(coc-funcobj-a)
 vmap gx <Plug>NetrwBrowseXVis
 nmap gx <Plug>NetrwBrowseX
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gd <Plug>(coc-definition)
-omap kf <Plug>(coc-funcobj-i)
-xmap kf <Plug>(coc-funcobj-i)
 map r :call CompileRunGcc()
 nmap ts <Plug>(coc-translator-p)
 nmap tt :CocCommand explorer
@@ -121,12 +118,35 @@ vnoremap <silent> <Plug>(coc-translator-ev) :call coc#rpc#notify('doKeymap', [
 nnoremap <silent> <Plug>(coc-translator-e) :call coc#rpc#notify('doKeymap', ['translator-e'])
 vnoremap <silent> <Plug>(coc-translator-pv) :call coc#rpc#notify('doKeymap', ['translator-pv'])
 nnoremap <silent> <Plug>(coc-translator-p) :call coc#rpc#notify('doKeymap', ['translator-p'])
+xnoremap <silent> <Plug>(coc-git-chunk-outer) :call coc#rpc#request('doKeymap', ['git-chunk-outer'])
+onoremap <silent> <Plug>(coc-git-chunk-outer) :call coc#rpc#request('doKeymap', ['git-chunk-outer'])
+xnoremap <silent> <Plug>(coc-git-chunk-inner) :call coc#rpc#request('doKeymap', ['git-chunk-inner'])
+onoremap <silent> <Plug>(coc-git-chunk-inner) :call coc#rpc#request('doKeymap', ['git-chunk-inner'])
+nnoremap <silent> <Plug>(coc-git-commit) :call coc#rpc#notify('doKeymap', ['git-commit'])
+nnoremap <silent> <Plug>(coc-git-chunkinfo) :call coc#rpc#notify('doKeymap', ['git-chunkinfo'])
+nnoremap <silent> <Plug>(coc-git-prevchunk) :call coc#rpc#notify('doKeymap', ['git-prevchunk'])
+nnoremap <silent> <Plug>(coc-git-nextchunk) :call coc#rpc#notify('doKeymap', ['git-nextchunk'])
 vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
 nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(netrw#GX(),netrw#CheckIfRemote(netrw#GX()))
-onoremap <silent> <Plug>(coc-funcobj-a) :call coc#rpc#request('selectFunction', [v:false, ''])
-onoremap <silent> <Plug>(coc-funcobj-i) :call coc#rpc#request('selectFunction', [v:true, ''])
-vnoremap <silent> <Plug>(coc-funcobj-a) :call coc#rpc#request('selectFunction', [v:false, visualmode()])
-vnoremap <silent> <Plug>(coc-funcobj-i) :call coc#rpc#request('selectFunction', [v:true, visualmode()])
+nnoremap <silent> <Plug>Colorizer :ColorToggle
+nnoremap <silent> <Plug>VimspectorStepOut :call vimspector#StepOut()
+nnoremap <silent> <Plug>VimspectorStepInto :call vimspector#StepInto()
+nnoremap <silent> <Plug>VimspectorStepOver :call vimspector#StepOver()
+nnoremap <silent> <Plug>VimspectorAddFunctionBreakpoint :call vimspector#AddFunctionBreakpoint( expand( '<cexpr>' ) )
+nnoremap <silent> <Plug>VimspectorToggleConditionalBreakpoint :call vimspector#ToggleBreakpoint( { 'condition': input( 'Enter condition expression: ' ),   'hitCondition': input( 'Enter hit count expression: ' ) } )
+nnoremap <silent> <Plug>VimspectorToggleBreakpoint :call vimspector#ToggleBreakpoint()
+nnoremap <silent> <Plug>VimspectorPause :call vimspector#Pause()
+nnoremap <silent> <Plug>VimspectorRestart :call vimspector#Restart()
+nnoremap <silent> <Plug>VimspectorStop :call vimspector#Stop()
+nnoremap <silent> <Plug>VimspectorContinue :call vimspector#Continue()
+onoremap <silent> <Plug>(coc-classobj-a) :call coc#rpc#request('selectSymbolRange', [v:false, '', ['Interface', 'Struct', 'Class']])
+onoremap <silent> <Plug>(coc-classobj-i) :call coc#rpc#request('selectSymbolRange', [v:true, '', ['Interface', 'Struct', 'Class']])
+vnoremap <silent> <Plug>(coc-classobj-a) :call coc#rpc#request('selectSymbolRange', [v:false, visualmode(), ['Interface', 'Struct', 'Class']])
+vnoremap <silent> <Plug>(coc-classobj-i) :call coc#rpc#request('selectSymbolRange', [v:true, visualmode(), ['Interface', 'Struct', 'Class']])
+onoremap <silent> <Plug>(coc-funcobj-a) :call coc#rpc#request('selectSymbolRange', [v:false, '', ['Method', 'Function']])
+onoremap <silent> <Plug>(coc-funcobj-i) :call coc#rpc#request('selectSymbolRange', [v:true, '', ['Method', 'Function']])
+vnoremap <silent> <Plug>(coc-funcobj-a) :call coc#rpc#request('selectSymbolRange', [v:false, visualmode(), ['Method', 'Function']])
+vnoremap <silent> <Plug>(coc-funcobj-i) :call coc#rpc#request('selectSymbolRange', [v:true, visualmode(), ['Method', 'Function']])
 nnoremap <silent> <Plug>(coc-cursors-position) :call coc#rpc#request('cursorsSelect', [bufnr('%'), 'position', 'n'])
 nnoremap <silent> <Plug>(coc-cursors-word) :call coc#rpc#request('cursorsSelect', [bufnr('%'), 'word', 'n'])
 vnoremap <silent> <Plug>(coc-cursors-range) :call coc#rpc#request('cursorsSelect', [bufnr('%'), 'range', visualmode()])
@@ -136,11 +156,11 @@ nnoremap <Plug>(coc-float-jump) :call       coc#util#float_jump()
 nnoremap <Plug>(coc-float-hide) :call       coc#util#float_hide()
 nnoremap <Plug>(coc-fix-current) :call       CocActionAsync('doQuickfix')
 nnoremap <Plug>(coc-openlink) :call       CocActionAsync('openLink')
-nnoremap <Plug>(coc-references) :call       CocAction('jumpReferences')
-nnoremap <Plug>(coc-type-definition) :call       CocAction('jumpTypeDefinition')
-nnoremap <Plug>(coc-implementation) :call       CocAction('jumpImplementation')
-nnoremap <Plug>(coc-declaration) :call       CocAction('jumpDeclaration')
-nnoremap <Plug>(coc-definition) :call       CocAction('jumpDefinition')
+nnoremap <Plug>(coc-references) :call       CocActionAsync('jumpReferences')
+nnoremap <Plug>(coc-type-definition) :call       CocActionAsync('jumpTypeDefinition')
+nnoremap <Plug>(coc-implementation) :call       CocActionAsync('jumpImplementation')
+nnoremap <Plug>(coc-declaration) :call       CocActionAsync('jumpDeclaration')
+nnoremap <Plug>(coc-definition) :call       CocActionAsync('jumpDefinition')
 nnoremap <Plug>(coc-diagnostic-prev-error) :call       CocActionAsync('diagnosticPrevious', 'error')
 nnoremap <Plug>(coc-diagnostic-next-error) :call       CocActionAsync('diagnosticNext',     'error')
 nnoremap <Plug>(coc-diagnostic-prev) :call       CocActionAsync('diagnosticPrevious')
@@ -148,6 +168,7 @@ nnoremap <Plug>(coc-diagnostic-next) :call       CocActionAsync('diagnosticNex
 nnoremap <Plug>(coc-diagnostic-info) :call       CocActionAsync('diagnosticInfo')
 nnoremap <Plug>(coc-format) :call       CocActionAsync('format')
 nnoremap <Plug>(coc-rename) :call       CocActionAsync('rename')
+nnoremap <Plug>(coc-codeaction-line) :call       CocActionAsync('codeAction',         'n')
 nnoremap <Plug>(coc-codeaction) :call       CocActionAsync('codeAction',         '')
 vnoremap <Plug>(coc-codeaction-selected) :call       CocActionAsync('codeAction',         visualmode())
 vnoremap <Plug>(coc-format-selected) :call       CocActionAsync('formatSelected',     visualmode())
@@ -176,7 +197,7 @@ set laststatus=2
 set pastetoggle=<F2>
 set pyxversion=3
 set ruler
-set runtimepath=~/.config/coc/extensions/node_modules/coc-explorer,~/.vim,~/.vim/plugged/vim-airline,~/.vim/plugged/markdown-preview.nvim,~/.vim/plugged/vim-gotham,~/.vim/plugged/oceanic-next,~/.vim/plugged/vim-snazzy,~/.vim/plugged/space-vim-dark,~/.vim/plugged/molokai,~/.vim/plugged/gruvbox,~/.vim/plugged/vim-deus,~/.vim/plugged/onedark.vim,~/.vim/plugged/coc.nvim,~/.vim/plugged/vim-android,~/.vim/plugged/vimspector,~/.vim/plugged/fcitx.vim,~/.vim/plugged/tabular,/usr/share/vim/vimfiles,/usr/share/vim/vim82,/usr/share/vim/vimfiles/after,~/.vim/plugged/oceanic-next/after,~/.vim/plugged/tabular/after,~/.vim/after
+set runtimepath=~/.config/coc/extensions/node_modules/coc-explorer,~/.vim,~/.vim/plugged/vim-airline,~/.vim/plugged/vim-gotham,~/.vim/plugged/oceanic-next,~/.vim/plugged/vim-snazzy,~/.vim/plugged/space-vim-dark,~/.vim/plugged/molokai,~/.vim/plugged/gruvbox,~/.vim/plugged/vim-deus,~/.vim/plugged/onedark.vim,~/.vim/plugged/coc.nvim,~/.vim/plugged/vim-android,~/.vim/plugged/vimspector,~/.vim/plugged/fcitx.vim,~/.vim/plugged/vim-css-color,~/.vim/plugged/colorizer,~/.vim/plugged/vim-coloresque,~/.vim/plugged/tabular,/usr/share/vim/vimfiles,/usr/share/vim/vim82,/usr/share/vim/vimfiles/after,~/.vim/plugged/oceanic-next/after,~/.vim/plugged/vim-android/after,~/.vim/plugged/vim-css-color/after,~/.vim/plugged/vim-coloresque/after,~/.vim/plugged/tabular/after,~/.vim/after
 set shiftwidth=4
 set showcmd
 set smartcase
@@ -190,15 +211,15 @@ let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/Workspace/StudyNotes/TheFirstCode-guolin
+cd ~/
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
 argglobal
 %argdel
-$argadd 2Activity.md
-edit 2Activity.md
+$argadd .config/i3/config
+edit .config/i3/config
 set splitbelow splitright
 set nosplitbelow
 set nosplitright
@@ -208,16 +229,6 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-let s:cpo_save=&cpo
-set cpo&vim
-inoremap <buffer> <silent> <Plug>MarkdownPreviewToggle :call mkdp#util#toggle_preview()
-inoremap <buffer> <silent> <Plug>MarkdownPreviewStop :call mkdp#util#stop_preview()a
-inoremap <buffer> <silent> <Plug>MarkdownPreview :call mkdp#util#open_preview_page()a
-nnoremap <buffer> <silent> <Plug>MarkdownPreviewToggle :call mkdp#util#toggle_preview()
-noremap <buffer> <silent> <Plug>MarkdownPreviewStop :call mkdp#util#stop_preview()
-noremap <buffer> <silent> <Plug>MarkdownPreview :call mkdp#util#open_preview_page()
-let &cpo=s:cpo_save
-unlet s:cpo_save
 setlocal keymap=
 setlocal noarabic
 setlocal noautoindent
@@ -234,8 +245,8 @@ setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=fb:*,fb:-,fb:+,n:>
-setlocal commentstring=<!--%s-->
+setlocal comments=:#
+setlocal commentstring=#\ %s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -253,8 +264,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'markdown'
-setlocal filetype=markdown
+if &filetype != 'conf'
+setlocal filetype=conf
 endif
 setlocal fixendofline
 setlocal foldcolumn=0
@@ -268,8 +279,8 @@ setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
 setlocal formatexpr=
-setlocal formatoptions=tcqln
-setlocal formatlistpat=^\\s*\\d\\+\\.\\s\\+\\|^[-*+]\\s\\+\\|^\\[^\\ze[^\\]]\\+\\]:
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal formatprg=
 setlocal grepprg=
 setlocal iminsert=0
@@ -287,14 +298,14 @@ setlocal lispwords=
 setlocal nolist
 setlocal makeencoding=
 setlocal makeprg=
-setlocal matchpairs=(:),{:},[:],<:>
+setlocal matchpairs=(:),{:},[:]
 setlocal modeline
 setlocal modifiable
 setlocal nrformats=bin,octal,hex
 set number
 setlocal number
 setlocal numberwidth=4
-setlocal omnifunc=htmlcomplete#CompleteTags
+setlocal omnifunc=
 setlocal path=
 setlocal nopreserveindent
 setlocal nopreviewwindow
@@ -320,8 +331,8 @@ setlocal statusline=%!airline#statusline(1)
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != 'markdown'
-setlocal syntax=markdown
+if &syntax != 'conf'
+setlocal syntax=conf
 endif
 setlocal tabstop=4
 setlocal tagcase=
@@ -342,14 +353,14 @@ setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
 silent! normal! zE
-let s:l = 98 - ((29 * winheight(0) + 15) / 31)
+let s:l = 380 - ((13 * winheight(0) + 15) / 30)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-98
-normal! 014|
+380
+normal! 061|
 tabnext 1
-badd +0 2Activity.md
+badd +0 .config/i3/config
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif
